@@ -126,3 +126,22 @@ if(NOT CMAKE_BUILD_TYPE MATCHES "Debug")
   install(FILES "${AOT_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
     COMPONENT Runtime)
 endif()
+
+# Automatically bundle backend services and app icon on every `flutter build linux`
+set(BACKEND_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../backend")
+if(EXISTS "${BACKEND_DIR}")
+  install(DIRECTORY "${BACKEND_DIR}"
+    DESTINATION "${CMAKE_INSTALL_PREFIX}"
+    COMPONENT Runtime
+    PATTERN ".venv" EXCLUDE
+    PATTERN "__pycache__" EXCLUDE
+  )
+endif()
+
+set(ICON_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../web/icons/Icon-512.png")
+if(EXISTS "${ICON_FILE}")
+  install(FILES "${ICON_FILE}"
+    DESTINATION "${CMAKE_INSTALL_PREFIX}"
+    RENAME "icon.png"
+    COMPONENT Runtime)
+endif()

@@ -1,6 +1,8 @@
 import argparse
 import json
 import sys
+
+from .models import CommandResult
 from .service import KeydService
 
 

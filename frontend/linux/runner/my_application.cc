@@ -7,6 +7,10 @@
 
 #include "flutter/generated_plugin_registrant.h"
 
+#ifndef APPLICATION_ID
+#define APPLICATION_ID "com.keydui.app"
+#endif
+
 struct _MyApplication {
   GtkApplication parent_instance;
   char** dart_entrypoint_arguments;
